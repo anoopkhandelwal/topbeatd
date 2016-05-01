@@ -29,7 +29,7 @@ def get_system_info():
         "fields": ["load.load1", "load.load5", "load.load15",
                    "cpu.iowait", "cpu.user", "cpu.user_p", "cpu.system", "cpu.system_p", "cpu.idle",
                    "mem.total", "mem.used", "mem.used_p", "mem.free", "mem.actual_used_p",
-                   "swap.total", "swap.used", "swap.free", "swap.used_p"
+                   "swap.total", "swap.used", "swap.free", "swap.used_p","@timestamp"
                    ]
     }
 

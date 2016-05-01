@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Topbeat System Info</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var options = {
+                chart: {
+                    renderTo: 'cpu_information',
+                    type: 'line'
+                },
+                title: {
+                    text: 'Information about the CPU Usage'
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle',
+                    borderWidth: 0
+                },
+                series: []
+            };
+            $.getJSON('cpu_information', function (list) {
+
+                options.series = list;
+                options.chart.renderTo = 'cpu_information'
+                options.title.text = 'Information about the CPU Usage'
+                // Create the chart
+                var chart = new Highcharts.Chart(options);
+
+            });
+
+            $.getJSON('cpu_information_p', function (list) {
+
+                options.series = list;
+                options.chart.renderTo = 'cpu_information_p'
+                options.title.text = 'Information about the CPU Usage(%)'
+                // Create the chart
+                var chart = new Highcharts.Chart(options);
+            });
+
+            $.getJSON('load_information', function (list) {
+
+                options.series = list;
+                options.chart.renderTo = 'load_information'
+                options.title.text = 'Information about the load'
+                // Create the chart
+                var chart = new Highcharts.Chart(options);
+            });
+
+            $.getJSON('memory_information', function (list) {
+
+                options.series = list;
+                options.chart.renderTo = 'memory_information'
+                options.title.text = 'Information about the Memory'
+                // Create the chart
+                var chart = new Highcharts.Chart(options);
+            });
+
+            $.getJSON('swap_information', function (list) {
+
+                options.series = list;
+                options.chart.renderTo = 'swap_information'
+                options.title.text = 'Information about the Swap'
+                // Create the chart
+                var chart = new Highcharts.Chart(options);
+            });
+
+        });
+        // Emulate get
+        $.get = function (id, fn) {
+            var json = eval(document.getElementById(id).innerHTML);
+            fn(json);
+        }
+    </script>
+</head>
+<body>
+<div id="cpu_information">
+    {{ category_cpu }}
+</div>
+
+<div id="cpu_information_p">
+    {{ category_cpu_p }}
+</div>
+
+<div id="load_information">
+    {{ category_load }}
+</div>
+
+<div id="memory_information">
+    {{ category_memory }}
+</div>
+
+<div id="swap_information">
+    {{ category_swap }}
+</div>
+
+</body>
+</html>
